@@ -10,8 +10,8 @@ The UCL data is the file
 from https://rdr.ucl.ac.uk/articles/dataset/Chronic_recordings_from_Neuropixels_2_0_probes_in_mice/24411841
 This needs to be untarred into a folder.
 
-The Dus data is the file
-    A3720-191126.nwb
+The Duszkiewicz data is the file
+    sub-A3702/sub-A3702_ses-191126_behavior+ecephys.nwb
 from the DANDI dataset 000939 - https://dandiarchive.org/dandiset/000939
 
 For this code to run, put all files in the "raw_data" folder and change the "repo_folder" below, to point at
@@ -23,9 +23,9 @@ sorting_components_benchmark_paper/   <-- `repo_folder` points here
            sort_all_real_data.py
            raw_data/
                sub-UCLA034_ses-3537d970-f515-4786-853f-23de525e110f_desc-raw_ecephys.nwb
-               A3702-191126.nwb
+               sub-A3702_ses-191126_behavior+ecephys.nwb
                AL032_2020-01-07/
-                   ???
+                   ...
             analyzers/
             curation_results/
 
@@ -103,7 +103,7 @@ cn_protocols = [
 cn_analyzer_folders = [
     analyzers_folder / f"Duszkiewicz_{protocol}_analyzer" for protocol in cn_protocols
 ]
-cn_data_folder = raw_data_folder / 'A3702-191126.nwb'
+cn_data_folder = raw_data_folder / 'sub-A3702_ses-191126_behavior+ecephys.nwb'
 recording = si.read_nwb_recording(cn_data_folder)
 for protocol_name, analyzer_folder in zip(cn_protocols, cn_analyzer_folders):
     do_sorting(recording, analyzer_folder, protocol_name)
