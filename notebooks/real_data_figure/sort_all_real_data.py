@@ -49,7 +49,6 @@ analyzers/
     ucl_tridesclous2_no_motion_correction_analyzer 
 
 """
-
 import spikeinterface.full as si
 from pathlib import Path
 from sort_one_piece_of_data import do_sorting
@@ -72,7 +71,7 @@ np1_analyzer_folders = [
     analyzers_folder / f"IBL_{protocol}_analyzer" for protocol in np1_protocols
 ]
 
-recording = si.read_nwb_recording(np1_data_folder, electrical_series_path = 'acquisition/ElectricalSeriesProbe00AP').frame_slice(start_frame=0, end_frame=30000*60)
+recording = si.read_nwb_recording(np1_data_folder, electrical_series_path = 'acquisition/ElectricalSeriesProbe00AP')
 for protocol_name, analyzer_folder in zip(np1_protocols, np1_analyzer_folders):
     do_sorting(recording, analyzer_folder, protocol_name)
 
@@ -88,12 +87,11 @@ np2_analyzer_folders = [
     analyzers_folder / f"ucl_{protocol}_analyzer" for protocol in np1_protocols
 ]
 
-recording = si.read_cbin_ibl(np2_data_folder).frame_slice(start_frame=0, end_frame=30000*60)
+recording = si.read_cbin_ibl(np2_data_folder)
 for protocol_name, analyzer_folder in zip(np2_protocols, np2_analyzer_folders):
     do_sorting(recording, analyzer_folder, protocol_name)
 
-# CN data from Adrian
-
+# CN data from  Duszkiewicz
 cn_protocols = [
         'kilosort4_no_motion_correction',
         'lupin_no_motion_correction',
@@ -104,6 +102,6 @@ cn_analyzer_folders = [
     analyzers_folder / f"Duszkiewicz_{protocol}_analyzer" for protocol in cn_protocols
 ]
 cn_data_folder = raw_data_folder / 'sub-A3702_ses-191126_behavior+ecephys.nwb'
-recording = si.read_nwb_recording(cn_data_folder)
+recording = si.read_nwb_recording(cn_data_folder, electrical_series_path = 'acquisition/ElectricalSeries')
 for protocol_name, analyzer_folder in zip(cn_protocols, cn_analyzer_folders):
     do_sorting(recording, analyzer_folder, protocol_name)
