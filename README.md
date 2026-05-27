@@ -46,8 +46,11 @@ Figure 7 can be reproduce using:
 
 Figure 8 can be reproduce using:
 
-  * TODO Chris
-  * TODO Chris
+  * `cd notebooks/real_data_figure` : move to the folder where the environment is defined
+  * `uv run sort_all_real_data.py` : Sort three datasets using four sorters
+  * `uv run generate_curation_data.py` : Use UnitRefine, Bombcell and SLAy to curate the sorting output
+  * `uv run make_drift_plots.py` : Make the drift and probe plots
+  * `figure.tpy` : Generate the plot
 
 
 Supplementary figure can be reproduce using::
